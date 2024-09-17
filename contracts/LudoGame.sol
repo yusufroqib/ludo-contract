@@ -2,8 +2,7 @@
 pragma solidity ^0.8.7;
 
 contract LudoGame {
-    uint8 public constant BOARD_SIZE = 52;
-    uint8 public constant WINNING_POSITION = 50;
+    uint8 public constant WINNING_POSITION = 52;
     uint256 public gameId;
     uint256 public lastRollTime;
     uint8 public currentPlayerTurn;
