@@ -36,6 +36,10 @@ contract LudoGame {
 
     function joinGame() external {
         require(
+            playerAddresses.length < NUM_PLAYERS,
+            "Total players filled up"
+        );
+        require(
             players[msg.sender].hasStarted == false,
             "You have already joined the game."
         );
@@ -51,6 +55,10 @@ contract LudoGame {
     }
 
     function rollDice() public returns (uint8) {
+        require(
+            playerAddresses.length == NUM_PLAYERS,
+            "Number of players not reached yet"
+        );
         require(
             msg.sender == playerAddresses[currentPlayerTurn],
             "Not yet your turn"
@@ -70,7 +78,7 @@ contract LudoGame {
                 )
             )
         );
-        uint8 roll = uint8(randomNumber % 6) + 1; 
+        uint8 roll = uint8(randomNumber % 6) + 1;
 
         lastRollTime = block.timestamp;
         emit DiceRolled(
